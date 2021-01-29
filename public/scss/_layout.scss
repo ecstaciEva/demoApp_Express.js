@@ -1,0 +1,318 @@
+.wrapper {
+    max-width: 100%;
+    margin: 0 auto;
+
+    @include pad {
+        width: 100%;
+    }
+}
+
+    /* ========== HEADER ========== */
+    .header {
+        background-color: #000;
+        height: 56px;
+        position: relative;
+        @include clearfix;
+        @include mobile {
+            position: relative;
+            width: 100%;
+        }
+    }
+
+    .logo {
+        float: left;
+        margin-left: 2em;
+        @include mobile {
+            margin-left: 1em;
+        }
+        // @include logo-text-hide;
+
+        a {
+            display: block;
+            width: auto;
+            height: 56px;
+            font-size: 30px;
+            line-height: 56px;
+            color: #fff;
+            // background-image: url(../images/logo_w@svg.svg);
+            background-repeat: no-repeat;
+            background-position-y: 50%;
+        }
+    }
+
+    .menu {
+        display: flex;
+        float: right;
+        width: 400px;
+        justify-content: space-between;
+
+        li {
+            font-size: 17px;
+
+            a {
+                color: #fff;
+                text-align: center;
+                display: block;
+                width: 80px;
+                line-height: 54px;
+
+                @include mobile {
+                    width: 100%;
+                    height: 50px;
+                    text-align: center;
+                    border-bottom: 1px solid $bg-color-2;
+                    background-color: $bg-color-1;
+                    color: $bg-color-2;
+                }
+            }
+
+            a:hover {
+                border-bottom: 2px solid #fff;
+            }
+
+            @include mobile {
+
+                a:active {
+                    background: #e29578;
+                    border: none;
+                }
+            }
+        }
+        
+        @include mobile {
+            max-height: 0px;
+            position: absolute;
+            display: block;
+            top: 56px;
+            width: 100%;
+            overflow: hidden;
+            float: none;
+            z-index: 50;
+            transition: all .3s ease-in-out;
+        }
+    }
+
+    .menu-switch {
+        color: #fff;
+        font-size: 17px;
+        display: none;
+
+        @include mobile {
+            display: block;
+            width: 56px;
+            height: 56px;
+            right: 1%;
+            line-height: 56px;   
+            float: right;
+            text-align: center;
+        }
+    }
+
+    .show-menu {    
+        .menu {
+            @include mobile {
+                max-height: 250px;
+            }
+        }
+    }
+
+
+    /* ========== BANNER ========== */
+    .banner {
+        height: 450px;
+        background-image: url("../images/restaurant.jpg");
+        background-attachment: fixed;
+        background-position-x: center;
+        background-position-y: top;
+        background-size: cover;
+        position: relative;
+
+        &:hover::after {
+            opacity: .55;
+        }
+        
+        @include pad {
+            height: 350px;
+            background-image: url(../images/restaurant_rwd.jpg);
+            background-size: contain;
+        }
+
+        @include banner-adjust {
+            background-size: cover;
+        }
+
+        &::after {
+            content: "";
+            display: block;
+            height: 100%;
+            width: 100%;
+            background: #000;
+            opacity: .2;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            z-index: 5;
+            transition: all .6s ease-out;
+
+            @include pad {
+                opacity: .55;
+            }
+
+            @include banner-adjust {
+                width: 90%;
+                height: 55%;
+                left: 5%;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+        }
+    }
+
+    .slogan {
+        color: #fff;
+        position: relative; /* 因為 z-index 是定位屬性，故也要設定成relative才不會飄起來 */
+        z-index: 10;
+        width: 40%;
+        height: 152px;
+        padding-top: 120px;
+        text-align: center;
+        margin: 0 auto;
+
+        @include pad {
+            width: auto;
+        }
+
+        @include banner-adjust {
+            width: 90%;
+            padding-top: 85px;
+        }
+    }
+
+    .slogan-1 {
+        font-size: 36px;
+        padding-bottom: 50px;
+        white-space: nowrap;
+        
+
+
+        @include banner-adjust {
+            padding-bottom: 20px;
+        }
+
+        span {
+            @include banner-adjust {
+                display: block;
+                line-height: 1.5;
+            }
+        }
+    }
+    
+    .slogan-2 {
+        font-size: 24px;
+        padding-bottom: 20px;
+
+        @include banner-adjust {
+            font-size: 18px;
+            padding-bottom: 12px;
+        }
+    }
+    
+    .slogan-3 {
+        font-size: 24px;
+
+        @include banner-adjust {
+            font-size: 18px;
+        }
+    }
+
+
+    /* ========== FOOTER ========== */
+    .footer {
+        height: auto;
+        background-color: $bg-color-4;
+        padding: 6% 3%;
+        color: $deco-color-4;
+        border-top: 1px solid $deco-color-2;
+    }
+    
+    .container {
+        display: flex;
+        margin: 0 auto;
+
+        @include mobile {
+            flex-direction: column;
+            padding-top: 5%;
+        }
+
+        > div {
+            width: 33.3333%;
+            padding: 0 2%;
+
+            @include mobile {
+                width: 100%;
+            margin-bottom: 7%;
+            }
+        }    
+    }
+
+    .footer-about-title {
+        font-size: 24px;
+        padding-bottom: .7em;
+    }
+    
+    .footer-about-context {
+        font-size: 18px;
+        line-height: 1.5;
+        text-align: justify;
+    }
+    
+    .footer-contact-title {
+        font-size: 24px;
+        padding-bottom: .7em;
+    }
+
+    .footer-contact-list {
+        padding-left: 3%;
+
+        > li {
+        font-size: 18px;
+        position: relative;
+        line-height: 1.5;
+        list-style-type: disc;
+     }
+    }
+
+    .footer-media-title {
+        font-size: 36px;
+        font-weight: 900;
+        padding-bottom: 10%;
+
+        @include mobile {
+            text-align: right;
+            padding-bottom: 5%;
+        }
+    }
+    
+    .media-area {
+        font-size: 36px;
+        float: right;
+        width: 60%;
+        display: flex;
+        justify-content: space-around;
+
+        @include mobile {
+            width: 40%;
+        }
+    }
+
+    .google-font {
+        color: $google-color;
+    }
+    
+    .twitter-font {
+        color: $twitter-color;
+    }
+    
+    .facebook-font {
+        color: $facebook-color;
+    }

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include shared/head %>
+</head>
+
+<body>
+
+    <div class="wrapper">
+
+        <header class="header clearfix">
+            <% include shared/header-short %>
+        </header>
+
+        <div class="banner">
+            <% include shared/banner %>
+        </div>
+
+        <div class="login-main">
+
+            <p class="restaurant-name">六角西餐廳</p>
+            <p class="login-slogan">享受美食好味道</p>
+
+            <form action="" class="login-form" id="loginForm">
+                <p class="form-title">LOGIN</p>
+                <label for="email" class="label-email">Email Address*</label>
+                <input type="email" id="email" required>
+
+                <label for="password" class="label-password">Password*</label>
+                <input type="password" id="password" required>
+
+                <a href="#" class="forget-password">忘記密碼？</a>
+
+                <button class="sign-up-btn btn" id="signupBtn">註冊</button>
+                <button class="login-btn btn" id="loginBtn">登入</button>
+
+            </form>
+
+        </div>
+
+        <footer class="footer">
+            <% include shared/footer%>
+        </footer>
+    </div>
+
+    <% include shared/scripts %>
+
+        <script>
+            // 取消Enter鍵的送出表單預設重整事件
+            $(window).keydown(function (e) {
+                if (e.keyCode === 13) {
+                    e.preventDefault();
+                };
+            });
+
+            // 帳號登入
+            $('#loginBtn').click(e => {
+                e.preventDefault();
+
+                const account = {
+                    email: $('#email').val(),
+                    password: $('#password').val()
+                };
+                firebase
+                    .auth()
+                    .signInWithEmailAndPassword(account.email, account.password)
+                    .then(function (res) {
+                        console.log(`[登入成功]`, res);
+                        res.user.getIdToken()
+                            .then(idToken => {
+                                axios.post('/api/login', { idToken: idToken })
+                                    .then(res => {
+                                        console.log(`[成功]`, res);
+                                        alert(`登入成功，即將為您跳轉頁面。`);
+                                        window.location = '/';
+                                    })
+                                    .catch(err => {
+                                        console.log('[錯誤]', err);
+                                    })
+                            });
+                    })
+                    .catch(function (err) {
+                        console.log(`[登入失敗]`, err);
+                        const str = err.code;
+                        switch (str) {
+                            case "auth/wrong-password":
+                                alert(`密碼錯誤，請重試並輸入正確密碼。`);
+                                break;
+
+                            case "auth/user-not-found":
+                                alert(`找不到此帳號，請重試。`);
+                                break;
+
+                            default:
+                                alert(`發生錯誤，請重試！`);
+                                break;
+                        }
+                    })
+            });
+
+            // 帳號註冊
+            $('#signupBtn').click(e => {
+                e.preventDefault();
+
+                const account = {
+                    email: $('#email').val(),
+                    password: $('#password').val()
+                };
+                firebase
+                    .auth()
+                    .createUserWithEmailAndPassword(account.email, account.password)
+                    .then(function (res) {
+                        console.log(`[註冊成功]`, res);
+                        alert('註冊成功，請重新登入！');
+                        location.reload();
+                    })
+                    .catch(function (err) {
+                        console.log(`[註冊失敗]`, err);
+                    })
+            })
+
+
+
+        </script>
+
+</body>
+
+</html>

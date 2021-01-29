@@ -1,0 +1,31 @@
+<!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- axios -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
+<!-- DataTables -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.21/js/jquery.dataTables.min.js"
+    integrity="sha512-BkpSL20WETFylMrcirBahHfSnY++H2O1W+UnEEO4yNIl+jI2+zowyoGJpbtk6bx97fBXf++WJHSSK2MV4ghPcg=="
+    crossorigin="anonymous"></script>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.19.1/firebase-firestore.js"></script>
+
+<script>
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyCf4dqLjaDsA7yhWuG7RUOTEJeOzipUoG0",
+        authDomain: "demoapp-0904-989e7.firebaseapp.com",
+        databaseURL: "https://demoapp-0904-989e7.firebaseio.com",
+        projectId: "demoapp-0904-989e7",
+        storageBucket: "demoapp-0904-989e7.appspot.com",
+        messagingSenderId: "293917942054",
+        appId: "1:293917942054:web:5e40cf94be286a4947e1e7"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+</script>
+
+<script src="/javascripts/main.js"></script>

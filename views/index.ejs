@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <% include shared/head %>
+    <!-- jQuery-UI -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+</head>
+
+<body>
+
+  <div class="wrapper">
+
+    <header class="header clearfix">
+      <% include shared/header %>
+
+    </header>
+
+    <div class="banner">
+      <% include shared/banner %>
+    </div>
+
+    <div class="index-main">
+
+      <section class="guide" id="guide">
+
+        <div class="guide-phrase" id="feature">
+          <p class="phrase-1">客人總是在詢問</p>
+          <p class="phrase-2">這麼好吃的秘訣是什麼</p>
+        </div>
+
+        <ul class="guide-areas">
+          <li class="guide-area-1">
+            <img src="../images/feature_1.png" alt="臺灣本土蔬菜">
+            <p class="feature">臺灣本土蔬菜</p>
+            <p class="feature-context">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto,
+              dolorem incidunt. Corporis quos aspernatur illo, quam voluptate ipsam quas a architecto
+              libero debitis nam mollitia fugiat dignissimos quis voluptatibus recusandae ea labore
+              tenetur nostrum, magnam cum. Odit odio perferendis quo.</p>
+          </li>
+          <li class="guide-area-2">
+            <img src="../images/feature_2.png" alt="專業米其林廚師">
+            <p class="feature">專業米其林廚師</p>
+            <p class="feature-context">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto,
+              dolorem incidunt. Corporis quos aspernatur illo, quam voluptate ipsam quas a architecto
+              libero debitis nam mollitia fugiat dignissimos quis voluptatibus recusandae ea labore
+              tenetur nostrum, magnam cum. Odit odio perferendis quo.</p>
+          </li>
+          <li class="guide-area-3">
+            <img src="../images/feature_3.png" alt="對於專業不能退讓">
+            <p class="feature">對於專業不能退讓</p>
+            <p class="feature-context">Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto,
+              dolorem incidunt. Corporis quos aspernatur illo, quam voluptate ipsam quas a architecto
+              libero debitis nam mollitia fugiat dignissimos quis voluptatibus recusandae ea labore
+              tenetur nostrum, magnam cum. Odit odio perferendis quo.</p>
+          </li>
+        </ul>
+
+
+      </section>
+
+      <section class="chef clearfix" id="chef">
+
+        <img src="../images/main-chef-new.jpg" alt="main-chef" class="chef-img">
+
+        <div class="chef-context">
+          <p class="chef-name-ch">今日主廚：帕金森．梅在帕</p>
+          <p class="chef-name-en">Today Chef : Plum in Shock</p>
+          <p class="chef-guide-texts">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Illum animi
+            sit minima numquam pariatur in quidem veniam doloremque corrupti recusandae quaerat, excepturi
+            nisi porro maiores, voluptates asperiores mollitia optio libero adipisci rem nesciunt quas
+            debitis. Nulla voluptatibus deserunt exercitationem animi ex atque quam facilis, a, recusandae
+            reprehenderit assumenda distinctio cum.</p>
+        </div>
+
+      </section>
+
+
+      <section class="customer-voice">
+        <p>聽聽別人的感想</p>
+
+        <ul class="comments-area">
+
+          <li class="comment-1">
+            <div class="top-info">
+              <img class="customer-image" src="../images/avatar_1.png" alt="客人1">
+              <p class="comment-title">高雄一口吃</p>
+            </div>
+            <p class="comment-context">自從吃了這家餐廳以後，我口水連續流了一個多月都沒停，下次不要再被我遇到，不然我一定連他們桌子都啃下去。</p>
+            <p class="comment-name"> -- 產品經理</p>
+          </li>
+
+          <li class="comment-2">
+            <div class="top-info">
+              <img class="customer-image" src="../images/avatar_2.png" alt="客人2">
+              <p class="comment-title">廟口小霸王</p>
+            </div>
+            <p class="comment-context">自從吃了這家餐廳以後，我口水連續流了一個多月都沒停，下次不要再被我遇到，不然我一定連他們桌子都啃下去。</p>
+            <p class="comment-name"> -- 金身道士</p>
+          </li>
+
+          <li class="comment-3">
+            <div class="top-info">
+              <img class="customer-image" src="../images/avatar_3.png" alt="客人3">
+              <p class="comment-title">春天也來了</p>
+            </div>
+            <p class="comment-context">自從吃了這家餐廳以後，我口水連續流了一個多月都沒停，下次不要再被我遇到，不然我一定連他們桌子都啃下去。</p>
+            <p class="comment-name"> -- 美麗萬分</p>
+          </li>
+
+        </ul>
+
+      </section>
+
+      <section class="reservation" id="reservation">
+
+        <div class="reservation-title">
+          <p>我們的位置不太夠坐</p>
+          <p>要不要先訂位呢？</p>
+          <% if(auth.isAdmin){ %>
+            <button class="check-reserv-btn" id="checkReservBtn"><a href="/reservation">查看預約</a></button>
+            <% } %>
+        </div>
+
+        <div class="reservation-info">
+
+          <div class="map">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d3614.6129867415134!2d121.51415225035947!3d25.047204743837806!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1z5Y-w5YyX6LuK56uZ!5e0!3m2!1szh-TW!2stw!4v1596696000280!5m2!1szh-TW!2stw"
+              width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false"
+              tabindex="0"></iframe>
+          </div>
+
+          <form class="reservation-form" action="">
+
+            <label for="name">姓名</label>
+            <input type="text" id="name" placeholder="請輸入單位或訂位人稱呼" required>
+
+            <label for="tel">電話</label>
+            <input type="text" id="tel" placeholder="02-1234567" required>
+
+            <label for="email">信箱</label>
+            <input type="email" id="email" placeholder="test@gmail.com">
+
+            <label for="peopleNum">人數</label>
+            <input type="text" id="peopleNum" required>
+
+            <label for="datepicker">日期</label>
+            <input type="text" id="datepicker" required>
+
+            <label for="timepicker">時間</label>
+            <input type="text" id="timepicker" required>
+
+
+            <!-- 素食選單 -->
+            <div class="radio">
+              <label>是否需要素食</label>
+              <input class="veg-radio radio-yes" id="veg" type="radio" name="need-veg" value="是">
+              <input class="veg-radio radio-no" id="noVeg" type="radio" name="need-veg" value="否">
+            </div>
+            <!-- 按鈕：取消、送出 -->
+            <div class="btns">
+              <button class="cancel-btn">取消</button>
+              <button type="submit" class="submit-btn" id="reserveSubmitBtn">送出</button>
+            </div>
+
+          </form>
+
+        </div>
+
+      </section>
+
+    </div>
+
+    <footer class="footer">
+      <% include shared/footer%>
+    </footer>
+  </div>
+
+  <% include shared/scripts %>
+    <!-- jQuery-UI -->
+    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"
+      integrity="sha512-ux1VHIyaPxawuad8d1wr1i9l4mTwukRq5B3s8G3nEmdENnKF5wKfOV6MEUH0k/rNT4mFr/yL+ozoDiwhUQekTg=="
+      crossorigin="anonymous"></script>
+
+    <!-- 月曆、時間設定 -->
+    <script>
+
+      $('#datepicker').datepicker({
+        dateFormat: "yy-mm-dd"
+      });
+
+      $('#timepicker').timepicker({
+        minTime: '11:30am',
+        maxTime: '08:00pm'
+      });
+
+
+      $('#reserveSubmitBtn').click(e => {
+        e.preventDefault();
+
+        // 取得建立表單當下日期時間
+        const getDate = date => date.toDateString().slice(4, 15);
+        let createdAt = getDate(new Date());
+
+        const vegList = $('.veg-radio');
+        let vegOutput;
+        for (let i = 0; i < vegList.length; i++) { if (vegList[i].checked) { vegOutput = vegList[i].id; }; }; const
+          reservation = {
+            name: $('#name').val(),
+            tel: $('#tel').val(),
+            email: $('#email').val() || "",
+            number: $('#peopleNum').val(),
+            date: $('#datepicker').val(),
+            time: $('#timepicker').val(),
+            veg: vegOutput,
+            createdAt: createdAt,
+          };
+
+        // 表單防呆機制
+        const requires = [
+          $('#name').val(),
+          $('#tel').val(),
+          $('#peopleNum').val(),
+          $('#datepicker').val(),
+          $('#timepicker').val(),
+          vegOutput,
+        ];
+
+        if (requires.indexOf("") !== -1) {
+          alert(`請完成預約表單！`);
+          return;
+        };
+
+        // 將預定傳給後端 
+        axios.post('/api/new-reserv', reservation).then(res => {
+          console.log(res);
+          alert('已成功預約！');
+          window.location = '/';
+        })
+          .catch(err => {
+            console.log(err);
+            alert('發生錯誤，請稍後再重試！');
+          })
+      })
+
+    </script>
+
+</body>
+
+</html>

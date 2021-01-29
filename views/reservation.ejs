@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include shared/head %>
+</head>
+
+<body>
+
+    <div class="wrapper">
+
+        <header class="header clearfix">
+            <% include shared/header-short %>
+        </header>
+
+        <div class="banner">
+            <% include shared/banner %>
+        </div>
+
+        <section class="reservation-main">
+            <table id="reservTable" class="reserv-table">
+                <caption style="display: none;">reservations</caption>
+                <thead>
+                    <tr>
+                        <th class="edit-head"></th>
+                        <th class="date-head">日期</th>
+                        <th class="time-head">時間</th>
+                        <th class="name-head">姓名</th>
+                        <th class="number-head">人數</th>
+                        <th class="tel-head">電話</th>
+                        <th class="veg-head rwd-hide">素食</th>
+                        <th class="created-at-head rwd-hide">預約建立日期</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <% reservations.forEach(reserv=> { %>
+                        <tr>
+                            <td class="edit">
+                                <a href="/reservation/edit/<%= reserv.id%>" class="reserv-edit-btn"
+                                    id="reservEditBtn">修改</a>
+                            </td>
+                            <td class="date">
+                                <%= reserv.date %>
+                            </td>
+                            <td class="time">
+                                <%= reserv.time %>
+                            </td>
+                            <td class="name">
+                                <%= reserv.name %>
+                            </td>
+                            <td class="number">
+                                <%= reserv.number %>
+                            </td>
+                            <td class="tel">
+                                <%= reserv.tel %>
+                            </td>
+                            <td class="veg rwd-hide">
+                                <%= reserv.veg %>
+                            </td>
+                            <td class="created-at rwd-hide">
+                                <%= reserv.createdAt %>
+                            </td>
+
+                        </tr>
+                        <% })%>
+
+                </tbody>
+            </table>
+        </section>
+
+        <footer class="footer">
+            <% include shared/footer%>
+        </footer>
+    </div>
+
+    <% include shared/scripts %>
+
+</body>
+
+</html>

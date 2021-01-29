@@ -1,0 +1,114 @@
+.reserv-edit-main {
+    background: $bg-color-3;
+    height: auto;
+    padding-top: 5%;
+    padding-bottom: 5%;
+
+    @include mobile {
+        padding-top: 10%;
+        padding-bottom: 10%;
+    }
+}
+
+.reserv-edit-form {
+    width: 45%;
+    margin: 0 auto;
+    @include clearfix;
+
+    @include mobile {
+        width: 85%;
+    }
+
+    > label {
+        display: block;
+        margin-bottom: 1.5%;
+        color: $bg-color-2;
+        font-weight: 800;
+    }
+
+    > input {
+        border: 1.5px solid $bg-color-2;
+        border-radius: 5px;
+        text-indent: 2%;
+        color: $bg-color-2;
+        font-size: 16px;
+        line-height: 32px;
+    }
+
+    > select {
+        display: block;
+        height: 32px;
+        border: 1.5px solid $bg-color-2;
+        border-radius: 5px;
+        outline: none;
+        margin-bottom: 2%;
+        background-color: #fff;
+    }
+
+    > button {
+        display: block;
+        float: right;
+        width: 20%;
+        border-radius: 5px;
+        border: none;
+        font-size: 14px;
+        color: #fff;
+        padding-top: .5em;
+        padding-bottom: .5em;
+        transition: all .3s ease-out;
+
+
+        &:hover {
+            transform: translateY(-3px);
+            cursor: pointer;
+        }
+
+        &:focus {
+            outline: none;
+        }
+
+        @include mobile {
+            width: 30%;
+            margin-top: 10%;
+        }
+    }
+}
+
+.reserv-edit-cancel-btn {
+    background-color: #6d6875;
+    
+    &:hover {
+        background-color: #514663;
+    }
+}
+
+.reserv-edit-submit-btn {
+    background-color: #f8961e;
+    margin-left: 5%;
+    
+    &:hover {
+        background-color: #f3722c;
+    }
+    
+}
+
+.reserv-delete-btn {
+    background-color: #da1e37;
+    margin-left: 5%;
+    
+    &:hover {
+        background: #85182a;
+    }
+    
+    @include mobile {
+        margin-bottom: 5px;
+    }
+}
+
+.text-input{
+    margin-bottom: 3%;
+
+    @include mobile {
+        margin-bottom: 6%;
+    }
+}

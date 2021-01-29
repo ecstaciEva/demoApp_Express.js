@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include shared/head %>
+</head>
+
+<body>
+
+    <div class="wrapper">
+
+        <header class="header clearfix">
+            <% include shared/header-short %>
+        </header>
+
+        <div class="banner">
+            <% include shared/banner %>
+        </div>
+
+        <div class="cart-main">
+
+            <section class="side">
+                <p class="side-title"><i class="fab fa-pagelines"></i> 線上訂購美食</p>
+                <ul class="side-list">
+                    <li class="all">所有商品</li>
+                    <li class="fries">
+                        <%= category1 %>
+                    </li>
+                    <li class="heat">
+                        <%= category2 %>
+                    </li>
+                    <li class="burger">
+                        <%= category3 %>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="products-info">
+
+                <div class="top-bar clearfix">
+
+                    <!-- 搜尋框 -->
+                    <div class="search-bar clearfix">
+                        <input type="text" placeholder="搜尋商品">
+                        <div class="search-icon"><i class="fas fa-search"></i></div>
+                    </div>
+
+                    <!-- 新增產品按鈕 -->
+                    <% if(auth.isAdmin){ %>
+                        <button href="" id="productCreateBtn" class="product-create-btn">新增產品</button>
+                        <% } %>
+
+                            <!-- 購物車 icon -->
+                            <div class="cart-icon">
+                                <i class="fas fa-shopping-cart"></i>
+                                <div id="incartNum" class="incart-num">0</div>
+                            </div>
+
+                            <div class="cart-list">
+                                <a class="close-cart-list"><i class="fas fa-times"></i></a>
+
+                                <table class="cart-list-table"></table>
+                            </div>
+
+                            <a href="#" class="check-out">結帳去</a>
+
+                </div>
+
+                <ul id="productList" class="product-lists">
+
+                    <% products.forEach(product=> { %>
+                        <li>
+                            <img src="<%= product.image%>" alt="product">
+                            <div class="product-like-icon"><i class="fas fa-heart" data-id="<%= product.serial%>"></i>
+                            </div>
+                            <% if(auth.isAdmin){ %>
+                                <p class="product-serial">商編：<%= product.serial %>
+                                </p>
+                                <% } %>
+                                    <p class="product-name-ch">
+                                        <%= product.name %>
+                                    </p>
+                                    <p class="product-name-en">
+                                        <%= product.name_en %>
+                                    </p>
+                                    <div class="product-category">
+                                        <%= product.category %>
+                                    </div>
+                                    <p class="product-price">$ <%= product.price %> NTD</p>
+
+                                    <% if(auth.isLogin){ %>
+                                        <select name="number" id="<%= product.id %>Select" class="product-num-select">
+                                            <% for(let i=1; i<11; i++){ %>
+                                                <option value="<%= i %>">
+                                                    <%= i %>
+                                                </option>
+                                                <% }%>
+                                        </select>
+
+                                        <button data-pid="<%= product.id %>" data-name="<%= product.name %>"
+                                            data-price="<%= product.price %>" id="addToCartBtn" class="add-to-cart-btn">
+                                            <i class=" fas fa-shopping-cart"></i>
+                                            加入購物車</button>
+                                        <% } %>
+
+                                            <% if(auth.isAdmin){ %>
+                                                <a class="product-edit-btn"
+                                                    href="/product/edit/<%= product.id %>">編輯產品</a>
+                                                <% } %>
+
+                        </li>
+                        <% }) %>
+                </ul>
+
+            </section>
+
+        </div>
+
+        <footer class="footer">
+            <% include shared/footer%>
+        </footer>
+    </div>
+
+    <% include shared/scripts %>
+        <script src="/javascripts/shop.js"></script>
+        <script src="/javascripts/cart.js"></script>
+        <script>
+
+            (function () {
+                let isLogin = '<%= auth.isLogin %>';
+                if (isLogin === 'false') {
+                    alert('登入即可開始購物！');
+                };
+            })();
+
+            // 新增產品
+            $('#productCreateBtn').click(e => {
+                e.preventDefault();
+                window.location = '/product/create';
+            })
+
+            const cart = new Cart();
+
+            $(".side-list").click(e => {
+                const target = e.target.innerText;
+                currentCategory = target;
+            });
+
+        </script>
+
+</body>
+
+</html>

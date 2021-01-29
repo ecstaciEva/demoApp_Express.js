@@ -1,0 +1,73 @@
+/* product-create main */
+
+.product-create-main {
+    background: $bg-color-3;
+    color: $bg-color-2;   
+}
+
+.product-create-form {
+    margin: 0 auto;
+    width: 60%;
+    padding: 5%;
+
+    label {
+        font-size: 16px;
+        line-height: 3;
+        display: block;
+    }
+
+    > input {
+        // background: ;
+        border: 1px solid $bg-color-2;
+        border-radius: 5px;
+        text-indent: 2%;
+        color: $bg-color-2;
+        font-size: 15px;
+
+        &:focus {
+            outline-color: $bg-color-2;
+            outline-width: 2px;
+        }
+    }
+
+    > input::placeholder {
+        font-size: 15px;
+        color: grey;
+        text-indent: 2%;
+    }
+
+    select {
+        display: inline-block;
+        width: 20%;
+        height: 32px;
+        border: 1px solid $bg-color-2;
+        border-radius: 5px;
+        color: $bg-color-2;
+        text-indent: 15%;
+        font-size: 15px;
+
+        &:focus {
+            outline-color: $bg-color-2;
+            outline-width: 2px;
+        }
+    }
+
+    .form-submit-btn {
+        width: 30%;
+        margin: 0 auto;
+        display: block;
+        font-size: 14px;
+        background: #e85d04;
+        border: none;
+        color: $bg-color-1;
+        line-height: 28px;
+        transition: all .3s ease;
+
+        &:hover {
+            background: #d00000;
+            cursor: pointer;
+            transform: translateY(-3px);
+        }
+
+    }
+}

@@ -1,0 +1,100 @@
+/* product-create main */
+
+.product-edit-main {
+    background: $bg-color-3;
+}
+
+.product-edit-form {
+    margin: 0 auto;
+    width: 60%;
+    padding: 5%;
+
+    label {
+        font-size: 16px;
+        line-height: 3;
+        display: block;
+        color: $font-color;
+    }
+
+    > input {
+        background: $bg-color-1;
+        border: 1px solid $bg-color-2;
+        border-radius: 5px;
+        text-indent: 2%;
+        color: $deco-color-4;
+        font-size: 15px;
+
+        &:focus {
+            outline-color: $bg-color-2;
+            outline-width: 2px;
+        }
+    }
+
+    > input::placeholder {
+        font-size: 15px;
+        color: grey;
+        text-indent: 2%;
+    }
+
+    select {
+        display: inline-block;
+        width: 20%;
+        height: 32px;
+        border: 1px solid $bg-color-2;
+        border-radius: 5px;
+        color: $bg-color-2;
+        text-indent: 15%;
+        font-size: 15px;
+
+        &:focus {
+            outline-color: $bg-color-2;
+            outline-width: 2px;
+        }
+    }
+
+    
+}
+
+.btns {
+    width: 60%;
+    margin: 5% auto 0 auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+.btn {
+    width: 40%;
+    border-radius: 5px;
+    display: inline-block;
+    font-size: 14px;
+    line-height: 28px;
+    border: none;
+
+    &:hover {
+        cursor: pointer;
+        transform: translateY(3px);
+        transition: all .15s ease-in-out;
+        }
+}
+
+.form-edit-btn {
+    background: $deco-color-2;
+    color: $deco-color-4;
+    
+    &:hover {
+        // FIXME: 背景顏色
+        background: $deco-color-3;
+        color: $bg-color-1;
+        }
+}
+
+.delete-btn {
+    background: $alert-color-2;
+    color: $bg-color-1;
+
+    &:hover {
+        background: $alert-color;
+        color: $bg-color-1;
+        }
+
+}

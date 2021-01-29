@@ -1,0 +1,25 @@
+<h1 class="logo"><a href="/">
+        <%= vars.title %>
+    </a></h1>
+
+<ul class="menu">
+    <li><a href="#feature">
+            <%= vars.headerMenuFeature %>
+        </a></li>
+    <li><a href="#chef">
+            <%= vars.headerMenuSkill %>
+        </a></li>
+    <li><a href="#reservation">
+            <%= vars.headerMenuOthers %>
+        </a></li>
+    <li><a href="/shop">
+            <%= vars.headerMenuShop %>
+        </a></li>
+    <% if(!auth.isLogin){ %>
+        <li><a href="/login">登入</a></li>
+        <% } else { %>
+            <li><a href="" id="logoutBtn">登出</a></li>
+            <% } %>
+</ul>
+
+<a href=""><i class="menu-switch fas fa-bars"></i></a>

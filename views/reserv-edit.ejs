@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include shared/head %>
+    <!-- jQuery UI -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.css">
+</head>
+
+<body>
+
+    <div class="wrapper">
+
+        <header class="header clearfix">
+            <% include shared/header-short %>
+        </header>
+
+        <div class="banner">
+            <% include shared/banner %>
+        </div>
+
+        <section class="reserv-edit-main">
+
+            <form class="reserv-edit-form clearfix">
+
+                <label for="reservDate">日期</label>
+                <input class="text-input" id="reservDate" type="text" value="<%= reservation.date %>">
+
+                <label for="reservTime">時間</label>
+                <input class="text-input" type="text" id="reservTime" value="<%= reservation.time %>">
+
+                <label for="reservName">姓名</label>
+                <input class="text-input" type="text" id="reservName" value="<%= reservation.name %>">
+
+                <label for="reservNumber">人數</label>
+                <input class="text-input" type="text" id="reservNumber" value="<%= reservation.number %>">
+
+                <label for="reservTel">電話</label>
+                <input class="text-input" type="text" id="reservTel" value="<%= reservation.tel %>">
+
+                <label for="reservEmail">信箱</label>
+                <input class="text-input" type="email" id="reservEmail" value="<%= reservation.email %>">
+
+                <label for="reservVeg">素食</label>
+                <select id="reservVeg">
+                    <% if(reservation.veg === "veg"){ %>
+                    <option value="yes" selected>需要</option>
+                    <option value="no">不需要</option>
+                    <% } else { %>
+                    <option value="yes">需要</option>
+                    <option value="no" selected>不需要</option>
+                    <% } %>
+                </select>
+
+                <button class="reserv-edit-submit-btn" id="reservEditSubmitBtn">編輯完成</button>
+                <button class="reserv-delete-btn" id="reserDeleteBtn">刪除預定</button>
+                <button class="reserv-edit-cancel-btn" id="reservEditCancelBtn">回上頁</button>
+
+            </form>
+
+        </section>
+
+
+
+
+
+
+        <footer class="footer">
+            <% include shared/footer%>
+        </footer>
+    </div>
+
+    <% include shared/scripts %>
+    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/timepicker/1.3.5/jquery.timepicker.min.js"
+        integrity="sha512-ux1VHIyaPxawuad8d1wr1i9l4mTwukRq5B3s8G3nEmdENnKF5wKfOV6MEUH0k/rNT4mFr/yL+ozoDiwhUQekTg=="
+        crossorigin="anonymous"></script>
+    <script src="/javascripts/main.js"></script>
+    <script>
+
+        // timepicker、datepicker
+        $('#reservDate').datepicker({
+            dateFormat: "yy-mm-dd"
+        });
+
+        $('#reservTime').timepicker({
+            minTime: '11:30am',
+            maxTime: '08:00pm'
+        });
+
+
+        // 回上頁
+        $('#reservEditCancelBtn').click(e => {
+            e.preventDefault();
+            window.location = '/reservation';
+        });
+
+        // 修改預定
+        $('#reservEditSubmitBtn').click(e => {
+            e.preventDefault();
+            const rid = '<%= reservation.id %>';
+
+            const editReserv = {
+                date: $('#reservDate').val(),
+                time: $('#reservTime').val(),
+                name: $('#reservName').val(),
+                number: $('#reservNumber').val(),
+                tel: $('#reservTel').val(),
+                email: $('#reservEmail').val(),
+                veg: $('#reservVeg').val()
+            };
+
+            axios.put(`/api/reserv-edit/${rid}`, editReserv)
+                .then(res => {
+                    console.log(res);
+                    alert(`修改成功，即將為您跳轉畫面！`);
+                    window.location = '/reservation';
+                })
+                .catch(err => {
+                    console.log(err);
+                    alert(`發生錯誤，請稍候重試！`);
+                });
+        })
+
+        // 刪除預定
+        $('#reserDeleteBtn').click(e => {
+            e.preventDefault();
+            const rid = '<%= reservation.id %>';
+            axios.delete(`/api/reserv-delete/${rid}`)
+                .then(res => {
+                    console.log(res);
+                    alert(`刪除成功！`);
+                    window.location = '/reservation';
+                })
+                .catch(err => {
+                    console.log(err);
+                    alert(`發生錯誤，請稍候重試！`);
+                })
+        })
+    </script>
+</body>
+
+</html>

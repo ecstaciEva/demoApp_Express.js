@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <% include shared/head %>
+</head>
+
+<body>
+
+    <div class="wrapper">
+
+        <header class="header clearfix">
+            <% include shared/header-short %>
+        </header>
+
+        <div class="banner">
+            <% include shared/banner %>
+        </div>
+
+        <section class="product-edit-main">
+            <form class="product-edit-form" id="productEditForm">
+
+                <label for="productName">產品名稱</label>
+                <input type="text" id="productName" value="<%= product.name %>" placeholder="產品名稱" required>
+
+                <label for="productNameEn">產品英文名稱</label>
+                <input type="text" id="productNameEn" value="<%= product.name_en %>" placeholder="產品英文名稱" required>
+
+                <label for="productSerial">產品編號</label>
+                <input type="text" id="productSerial" value="<%= product.serial %>" placeholder="產品編號" required>
+
+                <label for="productPrice">產品價格</label>
+                <input type="text" id="productPrice" value="<%= product.price %>" placeholder="產品價格" min="1"
+                    max="10000000" required>
+
+                <label for="productImage">產品圖片</label>
+                <input type="text" id="productImage" value="<%= product.image %>" required>
+
+                <div class="select-area">
+                    <label for="productCategory">商品分類</label>
+                    <select id="productCategory" required>
+                        <% const options=["美味餐飲", "生活雜貨" , "保養美妝" ] %>
+                            <% options.forEach( o=> { %>
+                                <% if( o===product.category ){ %>
+                                    <option value="<%= o %>" selected>
+                                        <%= o %>
+                                    </option>
+                                    <% } else { %>
+                                        <option value="<%= o %>">
+                                            <%= o %>
+                                        </option>
+                                        <% } %>
+                                            <% }) %>
+
+                    </select>
+                </div>
+                <div class="btns">
+                    <button class="btn delete-btn" id="deleteBtn">刪除產品</button>
+                    <button class="btn form-edit-btn" id="editBtn">編輯完成</button>
+                </div>
+            </form>
+
+        </section>
+
+        <footer class="footer">
+            <% include shared/footer%>
+        </footer>
+    </div>
+
+    <% include shared/scripts %>
+        <script src="/javascripts/main.js"></script>
+        <script>
+
+            // 編輯商品
+            $('#editBtn').click(e => {
+                e.preventDefault();
+
+                const pid = '<%= product.id%>';
+                const product = {
+                    name: $('#productName').val(),
+                    name_en: $('#productNameEn').val(),
+                    price: parseInt($('#productPrice').val()),
+                    serial: $('#productSerial').val(),
+                    image: $('#productImage').val(),
+                    category: $('#productCategory').val(),
+                    date: new Date()
+                };
+
+                // 將資料傳遞給後端負責處理更新產品的API
+                axios.put(`/api/edit/${pid}`, product)
+                    .then(res => {
+                        alert('產品更新成功！');
+                        window.location = '/shop';
+                    })
+                    .catch(err => {
+                        console.log(err)
+                        alert('發生錯誤，請稍後重試！');
+                    })
+
+            });
+
+            // 刪除商品
+            $('#deleteBtn').click(e => {
+                e.preventDefault();
+
+                const pid = '<%= product.id %>';
+                axios.delete(`/api/delete/${pid}`)
+                    .then(res => {
+                        console.log(res);
+                        alert(`產品已成功刪除！`);
+                        window.location = '/shop';
+                    })
+                    .catch(err => {
+                        console.log(err);
+                        alert('發生錯誤，請稍後重試！');
+                    })
+            })
+
+        </script>
+
+</body>
+
+</html>

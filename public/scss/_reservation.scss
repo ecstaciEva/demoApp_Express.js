@@ -1,0 +1,57 @@
+.reservation-main {
+    background: $bg-color-3;
+    padding: 5%;
+    width: 100%;
+    height: auto;
+    overflow: scroll;
+}
+
+.reserv-table {
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    border: 1px solid $deco-color-3;
+    font-size: 16px;
+
+
+    th, td {
+        border: 1px solid $deco-color-3;  
+        text-align: center;
+        white-space: nowrap;
+        height: 2em;
+        line-height: 2em;
+        padding: 0 2% 0 2%;
+        width: auto;
+    }
+
+    th {
+        font-weight: 800;
+        width: auto; 
+    }
+    
+    @include mobile {
+        .rwd-hide {
+            display: none;
+        }
+    }
+}
+
+.reserv-edit-btn {
+    display: block;
+    background: $deco-color-7;
+    color: #fff;
+    font-size: 14px;
+    width: 3em;
+    height: 2em;
+    border-radius: 5px;
+    margin: 0 auto;
+    transition: all .3s ease-out;
+    text-align: center;
+    line-height: 2em;
+    
+    &:hover {
+        background-color: $alert-color;
+        transform: translateY(-3px);
+        cursor: pointer;
+    }
+}
