@@ -75,6 +75,7 @@ firebase
    )
  ```
          
+<br>
 <p>後端接收到前端傳遞的 idToken，會向 Firebase-Auth 換取 Session Cookie，設定 available duration 後，設置 cookie 到使用者瀏覽器即可。</p>
         
 ```
