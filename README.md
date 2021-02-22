@@ -117,5 +117,18 @@ Firebase 的資料庫在操作上很直覺，取得商品的方式就和上面�
 <br>
 <h3>Middleware</h3>
 <p>
-由於有製作與權限相關的（編輯產品等）、以及和會員資格有關的功能，
+由於有製作與權限相關的（編輯產品等）、以及和會員資格有關的功能，有些頁面是不能讓管理者以外的人進入的，如果訪客想試圖進入新增產品頁面（在瀏覽器中打出正確網址），middleware守衛會去驗證此人身份，發現他不是管理者就會把瀏覽器導回首頁。
 </p>
+        
+```
+function adminGuard(router) {
+    router.use(async (req, res, next) => {
+        if (res.locals.auth.isAdmin) {
+            next();
+        } else {
+            res.redirect('/');
+        }
+    })
+}
+```
+        
